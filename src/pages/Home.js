@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Posts from "../components/Posts";
+import PostsList from "./AllPosts";
 import Profile from "../components/Profile";
 import Notification from "../util/Notification";
 import Grid from "@material-ui/core/Grid";
@@ -11,13 +11,17 @@ const Home = () => {
     type: "",
   });
   return (
-    <Grid container spacing={4}>
+    <Grid
+      alignItems="center"
+      direction="column"
+      justify="center"
+      container
+      spacing={0}
+    >
       <Grid item xs={12} sm={8}>
-        <Posts />
+        <PostsList />
       </Grid>
-      <Grid item sm={3} xs={6}>
-        <Profile />
-      </Grid>
+
       <Notification notify={notify} setNotify={setNotify} />
     </Grid>
   );

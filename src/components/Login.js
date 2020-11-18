@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
+  const { register, handleSubmit, reset, errors } = useForm({
+    shouldFocusError: true,
+    defaultValues: {},
+  });
   const [isLoading, setLoading] = useState(false);
   const { user } = useSession();
   const [notify, setNotify] = useState({
@@ -51,25 +55,16 @@ const Login = (props) => {
     type: "",
   });
 
-  const { register, handleSubmit, reset, errors } = useForm({
-    shouldFocusError: true,
-    defaultValues: {},
-  });
-
   useEffect(() => {
     if (user) {
       props.history.push("/");
     }
-  }, []);
+  }, [user, props.history]);
 
   const onSubmit = async (data) => {
     let user;
     setLoading(true);
-    setNotify({
-      isOpen: true,
-      message: "Logged in successfully",
-      type: "success",
-    });
+
     try {
       user = await login(data);
 
@@ -121,7 +116,7 @@ const Login = (props) => {
             helperText={errors.email ? "Email is required" : ""}
           />
           <TextField
-            inputRef={register({ required: true })}
+            inputRef={register({ required: "Password is required" })}
             variant="outlined"
             margin="normal"
             required
@@ -136,7 +131,12 @@ const Login = (props) => {
           />
           <FormControlLabel
             control={
-              <Checkbox inputRef={register} value="remember" color="primary" />
+              <Checkbox
+                name="rememberme"
+                inputRef={register}
+                value="remember"
+                color="primary"
+              />
             }
             label="Remember me"
           />
@@ -157,7 +157,7 @@ const Login = (props) => {
             </Grid>
             <Grid item>
               <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
+                "Don't have an account? Sign Up"
               </Link>
             </Grid>
           </Grid>

@@ -39,7 +39,7 @@ function App() {
           });
         }
       }),
-    [setAuthState]
+    [setAuthState, auth]
   );
 
   return (
