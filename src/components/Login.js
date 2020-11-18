@@ -70,11 +70,19 @@ const Login = (props) => {
 
       reset();
     } catch (error) {
-      setNotify({
-        isOpen: true,
-        message: "Wrong Credentials, please try again",
-        type: "error",
-      });
+      if (error.code === "auth/invalid-email") {
+        setNotify({
+          isOpen: true,
+          message: "Please enter a valid e-mail address",
+          type: "error",
+        });
+      } else {
+        setNotify({
+          isOpen: true,
+          message: "Wrong Credentials, please try again",
+          type: "error",
+        });
+      }
     }
 
     if (user) {
@@ -96,11 +104,7 @@ const Login = (props) => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={classes.form}
-          noValidate
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
           <TextField
             inputRef={register({ required: true })}
             variant="outlined"

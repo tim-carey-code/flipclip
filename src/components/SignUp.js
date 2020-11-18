@@ -59,27 +59,33 @@ const SignUp = (props) => {
     if (user) {
       props.history.push("/");
     }
-  }, []);
+  }, [props.history, user]);
 
   const onSubmit = async (data) => {
     let newUser;
-    setNotify({
-      isOpen: true,
-      message: "Sign up success",
-      type: "success",
-    });
+
     setLoading(true);
 
     try {
+      setNotify({
+        isOpen: true,
+        message: "Sign up success",
+        type: "success",
+      });
       newUser = await signup(data);
 
       reset();
     } catch (error) {
-      setNotify({
-        isOpen: true,
-        message: "Something went wrong",
-        type: "error",
-      });
+      if (
+        error.code === "auth/invalid-email" ||
+        error.code === "auth/argument-error"
+      ) {
+        setNotify({
+          isOpen: true,
+          message: "Please enter a valid e-mail address",
+          type: "error",
+        });
+      }
     }
 
     if (newUser) {
@@ -101,11 +107,7 @@ const SignUp = (props) => {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={classes.form}
-          noValidate
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -142,7 +144,6 @@ const SignUp = (props) => {
                 variant="outlined"
                 required
                 fullWidth
-                type="email"
                 id="email"
                 label="Email Address"
                 name="email"

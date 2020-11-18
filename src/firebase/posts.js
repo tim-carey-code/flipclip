@@ -6,3 +6,8 @@ const getPosts = () => {
     return doc.data();
   });
 };
+
+export const deletePost = async () => {
+  db.collection("posts").doc().delete();
+  await console.log("document deleted successfully");
+};

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // Firebase
 import "firebase/storage";
 import "firebase/firestore";
@@ -95,7 +95,7 @@ const PostsList = () => {
           id="imageInput"
           inputRef={register}
           type="file"
-          disableUnderline="true"
+          disableUnderline={true}
           onChange={handleImageChange}
         />
         <Button

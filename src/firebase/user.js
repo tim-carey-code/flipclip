@@ -13,5 +13,5 @@ export const newUserDocument = async (user) => {
     zip: "",
     phone: "",
   };
-  return userRef.set(userProfile);
+  await userRef.set(userProfile);
 };
