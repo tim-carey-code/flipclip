@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: "red",
   },
+  imageNone: {
+    display: "none",
+  },
 }));
 
 const Post = (props) => {
@@ -57,8 +60,8 @@ const Post = (props) => {
           title={displayName}
           subheader={dayjs(postedAt).fromNow()}
         />
+        {imageURL ? <img className={classes.img} src={imageURL} alt="" /> : ""}
 
-        <img className={classes.img} src={imageURL ? imageURL : ""} alt="" />
         <CardContent>
           {text}
           <Typography

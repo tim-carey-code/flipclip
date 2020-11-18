@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+// Firebase
 import "firebase/storage";
 import "firebase/firestore";
 import { db, storage, auth } from "../firebase/config";
+// MUI stuff
 import Grid from "@material-ui/core/Grid";
-import Post from "../components/Post";
-import dayjs from "dayjs";
-// import {imageUpload} from '../components/Image';
-import relativeTime from "dayjs/plugin/relativeTime";
 import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
+// Components
+import Post from "../components/Post";
+// DayJS
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+// react-firebase-hooks
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useDownloadURL } from "react-firebase-hooks/storage";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -29,7 +32,6 @@ const PostsList = () => {
   const [formValue, setFormVlue] = useState("");
   const [image, setImage] = useState(null);
   const postsRef = db.collection("posts");
-  const [value] = useDownloadURL(storage.ref(`images/${image?.name}`));
   const postQuery = postsRef.orderBy("postedAt", "desc");
   const [posts] = useCollectionData(postQuery, { idField: "id" });
   const { register, handleSubmit, reset } = useForm({
@@ -40,54 +42,28 @@ const PostsList = () => {
   dayjs.extend(relativeTime);
 
   const handleImageChange = async (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    } else {
-      return null;
-    }
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    setImage(await fileRef.getDownloadURL());
   };
 
-  const handleImageUpload = (e) => {
-    if (!e.target.value) {
-      return undefined;
-    }
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .then((url) => {
-            reset();
-            console.log(url);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    );
-  };
-
-  const onSubmit = async (e) => {
+  const onSubmit = async (form, e) => {
+    e.preventDefault();
     const { uid, displayName, photoURL } = auth.currentUser;
 
-    const newPost = {
-      text: formValue,
-      postedAt: new Date().toISOString(),
-      uid,
-      displayName,
-      photoURL,
-      imageURL: value,
-    };
     try {
       reset();
-      await postsRef.add(newPost);
+      await postsRef.doc().set({
+        text: formValue,
+        postedAt: new Date().toISOString(),
+        uid,
+        displayName,
+        photoURL,
+        imageURL: image,
+      });
+      setImage(null);
     } catch (error) {
       console.log(error);
     }
@@ -128,13 +104,11 @@ const PostsList = () => {
           variant="contained"
           color="primary"
           className={classes.submit}
-          onClick={handleImageUpload}
         >
           Post
         </Button>
       </form>
-      {posts &&
-        posts.map((text) => <Post id="postImage" key={text.id} post={text} />)}
+      {posts && posts.map((text) => <Post key={text.id} post={text} />)}
     </>
   );
 };
