@@ -2,12 +2,20 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import { newUserDocument } from "./user";
 
-export const signup = async ({ firstName, lastName, email, password }) => {
+export const signup = async ({
+  userName,
+  firstName,
+  lastName,
+  email,
+  password,
+}) => {
   const res = await firebase
     .auth()
     .createUserWithEmailAndPassword(email, password);
   const user = res.user;
-  await user.updateProfile({ displayName: `${firstName} ${lastName}` });
+  await user.updateProfile({
+    displayName: `${firstName} ${lastName}`,
+  });
   await newUserDocument(user);
   return user;
 };

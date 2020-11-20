@@ -144,6 +144,20 @@ const SignUp = (props) => {
                 variant="outlined"
                 required
                 fullWidth
+                id="userName"
+                label="User Name"
+                name="userName"
+                autoComplete="uname"
+                error={errors.userName}
+                helperText={errors.userName ? "User Name is required" : ""}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                inputRef={register({ required: true })}
+                variant="outlined"
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
@@ -165,12 +179,6 @@ const SignUp = (props) => {
                 autoComplete="current-password"
                 error={errors.password}
                 helperText={errors.password ? "Password is required" : ""}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>

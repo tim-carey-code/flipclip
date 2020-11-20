@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+// MUI stuff
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+
 // Firebase
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -19,6 +23,23 @@ import Home from "./pages/Home";
 // Util
 import { PrivateRoute } from "./router/PrivateRoute";
 import "./App.css";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#d1c4e9",
+      main: "#673ab7",
+      dark: "#311b92",
+      contrastText: "#fbe9e7",
+    },
+    secondary: {
+      light: "#b388ff",
+      main: "#7c4dff",
+      dark: "#651fff",
+      contrastText: "#f3e5f5",
+    },
+  },
+});
 
 function App() {
   const auth = firebase.auth();
@@ -44,25 +65,27 @@ function App() {
 
   return (
     <UserProvider>
-      <Router>
-        <Navbar />
-        <Switch>
-          <PrivateRoute
-            authed={authentication.authenticated}
-            exact
-            path="/"
-            component={Home}
-          />
-          <Route exact path="/signup" component={SignUp} />
-          <PrivateRoute
-            authed={authentication.authenticated}
-            exact
-            path="/dashboard"
-            component={Dashboard}
-          />
-          <Route exact path="/login" component={Login} />
-        </Switch>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Navbar />
+          <Switch>
+            <PrivateRoute
+              authed={authentication.authenticated}
+              exact
+              path="/"
+              component={Home}
+            />
+            <Route exact path="/signup" component={SignUp} />
+            <PrivateRoute
+              authed={authentication.authenticated}
+              exact
+              path="/dashboard"
+              component={Dashboard}
+            />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </Router>
+      </ThemeProvider>
     </UserProvider>
   );
 }
