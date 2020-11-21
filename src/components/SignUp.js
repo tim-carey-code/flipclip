@@ -67,11 +67,6 @@ const SignUp = (props) => {
     setLoading(true);
 
     try {
-      setNotify({
-        isOpen: true,
-        message: "Sign up success",
-        type: "success",
-      });
       newUser = await signup(data);
 
       reset();
@@ -83,6 +78,12 @@ const SignUp = (props) => {
         setNotify({
           isOpen: true,
           message: "Please enter a valid e-mail address",
+          type: "error",
+        });
+      } else {
+        setNotify({
+          isOpen: true,
+          message: "Something went wrong",
           type: "error",
         });
       }

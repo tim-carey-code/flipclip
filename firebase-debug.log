@@ -1,0 +1,42 @@
+[debug] [2020-11-20T22:49:16.980Z] ----------------------------------------------------------------------
+[debug] [2020-11-20T22:49:16.982Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\timca\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-11-20T22:49:16.983Z] CLI Version:   8.14.1
+[debug] [2020-11-20T22:49:16.983Z] Platform:      win32
+[debug] [2020-11-20T22:49:16.983Z] Node Version:  v12.18.3
+[debug] [2020-11-20T22:49:16.983Z] Time:          Fri Nov 20 2020 17:49:16 GMT-0500 (Eastern Standard Time)
+[debug] [2020-11-20T22:49:16.984Z] ----------------------------------------------------------------------
+[debug] [2020-11-20T22:49:16.984Z] 
+[debug] [2020-11-20T22:49:16.992Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-20T22:49:16.993Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\timca\Documents\dev\flipclip-app\flipclip
+
+[debug] [2020-11-20T22:49:23.827Z] ----------------------------------------------------------------------
+[debug] [2020-11-20T22:49:23.830Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\timca\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2020-11-20T22:49:23.830Z] CLI Version:   8.14.1
+[debug] [2020-11-20T22:49:23.830Z] Platform:      win32
+[debug] [2020-11-20T22:49:23.831Z] Node Version:  v12.18.3
+[debug] [2020-11-20T22:49:23.832Z] Time:          Fri Nov 20 2020 17:49:23 GMT-0500 (Eastern Standard Time)
+[debug] [2020-11-20T22:49:23.832Z] ----------------------------------------------------------------------
+[debug] [2020-11-20T22:49:23.832Z] 
+[debug] [2020-11-20T22:49:23.838Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-20T22:49:23.839Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\timca\Documents\dev\flipclip-app\flipclip
+

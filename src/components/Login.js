@@ -67,6 +67,11 @@ const Login = (props) => {
 
     try {
       user = await login(data);
+      notify = await setNotify({
+        isOpen: true,
+        message: "Login Success",
+        type: "success",
+      });
 
       reset();
     } catch (error) {
