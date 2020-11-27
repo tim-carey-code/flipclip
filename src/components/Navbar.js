@@ -69,8 +69,8 @@ const Navbar = () => {
               <Button onClick={handleLogout} color="inherit">
                 Logout
               </Button>
-              <Button component={Link} to="/dashboard" color="inherit">
-                Dashboard
+              <Button component={Link} to="/profile" color="inherit">
+                Profile
               </Button>
             </>
           ) : (

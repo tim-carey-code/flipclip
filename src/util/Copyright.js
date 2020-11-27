@@ -6,10 +6,7 @@ const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" to="/">
-        Flip Clip
-      </Link>{" "}
-      {new Date().getFullYear()}
+      Flip Clip {new Date().getFullYear()}
       {"."}
     </Typography>
   );

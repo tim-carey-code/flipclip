@@ -17,7 +17,7 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 
 // Pages
-import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 
 // Util
@@ -79,8 +79,8 @@ function App() {
             <PrivateRoute
               authed={authentication.authenticated}
               exact
-              path="/dashboard"
-              component={Dashboard}
+              path="/profile"
+              component={Profile}
             />
             <Route exact path="/login" component={Login} />
           </Switch>

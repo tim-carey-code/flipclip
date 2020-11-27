@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import ShareIcon from "@material-ui/icons/Share";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import Dialog from "@material-ui/core/Dialog";
+import DiaglogTitle from "@material-ui/core/DialogTitle";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";

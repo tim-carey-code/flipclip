@@ -7,11 +7,13 @@ export const newUserDocument = async (user) => {
     uid: user.uid,
     email: user.email,
     name: user.displayName,
-    address: "",
+    country: "",
     city: "",
     state: "",
     zip: "",
     phone: "",
+    userName: "",
+    bio: "",
   };
   await userRef.set(userProfile);
 };

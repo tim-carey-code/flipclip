@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PostsList from "./AllPosts";
-import Profile from "../components/Profile";
 import Notification from "../util/Notification";
 import Grid from "@material-ui/core/Grid";
 

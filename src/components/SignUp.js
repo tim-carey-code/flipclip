@@ -193,10 +193,13 @@ const SignUp = (props) => {
             Sign Up
           </Button>
           <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Login
-              </Link>
+            <Grid item sm={12} xs={12}>
+              <div className={classes.paper}>
+                Already have an account?{" "}
+                <Link href="/login" variant="body2">
+                  Login
+                </Link>
+              </div>
             </Grid>
           </Grid>
         </form>

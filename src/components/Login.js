@@ -138,7 +138,7 @@ const Login = (props) => {
             error={errors.password}
             helperText={errors.password ? "Password is required" : ""}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={
               <Checkbox
                 name="rememberme"
@@ -148,7 +148,7 @@ const Login = (props) => {
               />
             }
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
@@ -159,15 +159,18 @@ const Login = (props) => {
             Login
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                "Don't have an account? Sign Up"
-              </Link>
+            </Grid> */}
+            <Grid item xs={12}>
+              <div className={classes.paper}>
+                Don't have an account?{" "}
+                <Link href="/signup" variant="body2">
+                  Sign Up!
+                </Link>
+              </div>
             </Grid>
           </Grid>
         </form>
