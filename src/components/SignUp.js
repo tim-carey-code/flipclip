@@ -9,6 +9,7 @@ import Notifiation from "../util/Notification";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { signup } from "../firebase/auth";
+import { db } from "../firebase/config";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -44,11 +45,13 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = (props) => {
   const { user } = useSession();
+  const userRef = db.doc(`/users/${user.uid}`);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
     type: "",
   });
+  const [userName, setUsername] = useState("");
   const { register, handleSubmit, reset, errors } = useForm({
     shouldFocusError: true,
     defaultValues: {},
