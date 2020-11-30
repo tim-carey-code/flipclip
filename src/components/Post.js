@@ -19,8 +19,8 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   img: {
     objectFit: "fill",
-    height: 600,
-    width: 600,
+    height: 700,
+    width: 700,
   },
 
   avatar: {
