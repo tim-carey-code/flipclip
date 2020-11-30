@@ -37,20 +37,22 @@ const useStyles = makeStyles((theme) => ({
 
 const Post = (props) => {
   const classes = useStyles();
-  const postsRef = db.collection("posts").doc();
-  const { text, displayName, postedAt, imageURL } = props.post;
+  const postsRef = db.collection("posts");
+  const { text, displayName, postedAt, imageURL, id } = props.post;
 
-  const deletePost = async () => {
-    try {
-      await postsRef.delete();
-    } catch (error) {
-      console.log(error);
-    }
+  const deletePostClick = () => {
+    postsRef
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log(`document ${id} deleted successfully`);
+      });
   };
 
   return (
     <>
       <Card className={classes.root}>
+        <Button onClick={deletePostClick}>Delete Post</Button>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}></Avatar>

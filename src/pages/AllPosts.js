@@ -49,6 +49,19 @@ const PostsList = () => {
     setImage(await fileRef.getDownloadURL());
   };
 
+  console.log(posts);
+  // const deletePost = (id) => {
+  //   postsRef
+  //     .doc(id)
+  //     .delete()
+  //     .then(() => {
+  //       console.log("document deleted successfully");
+  //     })
+  //     .catch((err) => {
+  //       console.log("error removing document", err);
+  //     });
+  // };
+
   const onSubmit = async (form, e) => {
     e.preventDefault();
     const { uid, displayName, photoURL } = auth.currentUser;
@@ -108,7 +121,8 @@ const PostsList = () => {
           Post
         </Button>
       </form>
-      {posts && posts.map((text) => <Post key={text.id} post={text} />)}
+      {posts &&
+        posts.map((text) => <Post id={posts.id} key={text.id} post={text} />)}
     </>
   );
 };
