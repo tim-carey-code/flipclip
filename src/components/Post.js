@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import { db } from "../firebase/config";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import ShareIcon from "@material-ui/icons/Share";
-import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import Avatar from "@material-ui/core/Avatar";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
 import { useSession } from "../firebase/UserProvider";
-import ReusableDialog from "../util/MyDialog";
+import MyDialog from "../util/MyDialog";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginBottom: 40,
+  },
+
   img: {
     objectFit: "fill",
     height: 700,
@@ -33,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Post = (props) => {
   const { user } = useSession();
+  const [open, setOpen] = useState();
   const classes = useStyles();
   const postsRef = db.collection("posts");
   const { text, displayName, postedAt, imageURL, id, uid } = props.post;
@@ -52,16 +56,39 @@ const Post = (props) => {
       return console.log("unauthorized deletion");
     }
   };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleListItemClick = (value) => {
+    // onClose(value);
+  };
+
   return (
     <>
       <Card className={classes.root}>
-        <Button onClick={deletePostClick}>Delete Post</Button>
         <CardHeader
           avatar={
             <Avatar aria-label="recipe" className={classes.avatar}></Avatar>
           }
           action={
-            <ReusableDialog title="User Actions" listItem="Delete Post" />
+            <>
+              <IconButton onClick={handleClickOpen} aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+              <MyDialog
+                title={`Post Actions`}
+                listItem="Delete Post"
+                open={open}
+                onClose={handleClose}
+                dialogClick={deletePostClick}
+              />
+            </>
           }
           title={displayName}
           subheader={dayjs(postedAt).fromNow()}

@@ -17,27 +17,20 @@ const useStyles = makeStyles({
   },
 });
 
-function MyDialog(props) {
+export default function MyDialog(props) {
   const classes = useStyles();
-  const { onClose, selectedValue, open, title, listItem } = props;
+  const [selectedValue, setSelectedValue] = useState();
+  const { dialogClick, onClose, title, listItem, open } = props;
 
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  const handleListItemClick = (value) => {
-    onClose(value);
-  };
+  // const handleListItemClick = (value) => {
+  //   onClose(value);
+  // };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      aria-labelledby="simple-dialog-title"
-      open={open}
-    >
+    <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">{title}</DialogTitle>
       <List>
-        <ListItem button onClick={() => handleListItemClick()} key={"lakslsdk"}>
+        <ListItem button onClick={dialogClick} key={"lakslsdk"}>
           {listItem}
         </ListItem>
       </List>
@@ -45,33 +38,33 @@ function MyDialog(props) {
   );
 }
 
-export default function ReusableDialog(props) {
-  const { title, listItem } = props;
-  const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState();
+// export default function ReusableDialog(props) {
+//   const { title, listItem, dialogAction } = props;
+//   const [open, setOpen] = useState(false);
+//   const [selectedValue, setSelectedValue] = useState();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+//   const handleClickOpen = () => {
+//     setOpen(true);
+//   };
 
-  const handleClose = (value) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
+//   const handleClose = (value) => {
+//     setOpen(false);
+//     setSelectedValue(value);
+//   };
 
-  return (
-    <div>
-      <br />
-      <IconButton onClick={handleClickOpen} aria-label="settings">
-        <MoreVertIcon />
-      </IconButton>
-      <MyDialog
-        title={title}
-        listItem={listItem}
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <br />
+//       <IconButton onClick={handleClickOpen} aria-label="settings">
+//         <MoreVertIcon />
+//       </IconButton>
+//       <MyDialog
+//         title={title}
+//         listItem={listItem}
+//         selectedValue={selectedValue}
+//         open={open}
+//         onClose={handleClose}
+//       />
+//     </div>
+//   );
+// }

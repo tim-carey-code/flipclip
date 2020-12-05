@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = (props) => {
   const { user } = useSession();
-  const userRef = db.doc(`/users/${user.uid}`);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
