@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     objectFit: "fill",
     height: 700,
     width: 700,
+    outline: "none",
   },
 
   avatar: {
@@ -81,13 +82,23 @@ const Post = (props) => {
               <IconButton onClick={handleClickOpen} aria-label="settings">
                 <MoreVertIcon />
               </IconButton>
-              <MyDialog
-                title={`Post Actions`}
-                listItem="Delete Post"
-                open={open}
-                onClose={handleClose}
-                dialogClick={deletePostClick}
-              />
+              {user.uid === uid ? (
+                <MyDialog
+                  title={`Post Actions`}
+                  listItem="Delete Post"
+                  open={open}
+                  onClose={handleClose}
+                  dialogClick={deletePostClick}
+                />
+              ) : (
+                <MyDialog
+                  title="Post Actions"
+                  listItem="Report Post"
+                  open={open}
+                  onClose={handleClose}
+                  dialogClick={handleClose}
+                />
+              )}
             </>
           }
           title={displayName}
